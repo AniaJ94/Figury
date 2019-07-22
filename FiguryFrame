@@ -1,0 +1,33 @@
+import javax.swing.*;
+import java.awt.*;
+import javax.swing.JTabbedPane;
+
+public class FiguryFrame extends JFrame {
+    JPanel prostokatPanel = new JPanel();
+    JPanel trojkatPanel = new JPanel();
+    JPanel koloPanel = new JPanel();
+
+    JTabbedPane tabbed = new JTabbedPane();
+    public FiguryFrame(){
+        super("Pole i obwód");
+
+        FiguryPanel figuryPanel1 = new FiguryPanel();
+        Figury2Panel figuryPanel2 = new Figury2Panel();
+        Figury3Panel figuryPanel3 = new Figury3Panel();
+        tabbed.add("Prostokąt", prostokatPanel);
+        tabbed.add("Trójkąt", trojkatPanel);
+        tabbed.add("Koło", koloPanel);
+        add(tabbed);
+        prostokatPanel.add(figuryPanel1);
+        trojkatPanel.add(figuryPanel2);
+        koloPanel.add(figuryPanel3);
+
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        figuryPanel1.setPreferredSize(new Dimension(600,600));
+        figuryPanel2.setPreferredSize(new Dimension(600,600));
+        figuryPanel3.setPreferredSize(new Dimension(600,600));
+
+        setVisible(true);
+        pack();
+    }
+}
