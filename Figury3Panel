@@ -1,0 +1,116 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class Figury3Panel extends JPanel implements ActionListener {
+    public static final int HEIGHT = 600;
+    public static final int WIDTH = 600;
+
+    private JLabel r1;
+    private JTextField r;
+    private JLabel obwod1;
+    private JTextField obwod;
+    private JLabel pole1;
+    private JTextField pole;
+    private JButton oblicz;
+    private float p;
+    private float o;
+    private JLabel s;
+    private JLabel pr;
+
+    public Figury3Panel(){
+        r1= new JLabel("Podaj długość promienia r:");
+        r= new JTextField(" ");
+        obwod1=new JLabel("Obwód wynosi:");
+        obwod = new JTextField(" ");
+        pole1 = new JLabel("Pole wynosi:");
+        pole=new JTextField(" ");
+        oblicz=new JButton("Oblicz");
+        s = new JLabel("S");
+        pr = new JLabel("r");
+
+        setLayout(null);
+
+        r1.setBounds(50,50,300,50);
+        r.setBounds(310, 50, 100,50);
+        obwod1.setBounds(50,430,200,50);
+        obwod.setBounds(260,430,100,50);
+        pole1.setBounds(50,500,200,50);
+        pole.setBounds(260,500,100,50);
+        oblicz.setBounds(400,200,100,50);
+        s.setBounds(148,217,10,10);
+        pr.setBounds(194,217,10,10);
+
+        r1.setFont(new java.awt.Font("Tahoma", 0, 18));
+        r.setFont(new java.awt.Font("Tahoma", 0, 18));
+        obwod1.setFont(new java.awt.Font("Tahoma", 0, 18));
+        obwod.setFont(new java.awt.Font("Tahoma", 0, 18));
+        pole1.setFont(new java.awt.Font("Tahoma", 0, 18));
+        pole.setFont(new java.awt.Font("Tahoma", 0, 18));
+        oblicz.setFont(new java.awt.Font("Tahoma",0,18));
+        s.setFont(new java.awt.Font("Tahoma", 0, 12));
+        pr.setFont(new java.awt.Font("Tahoma",0,12));
+
+        r.setHorizontalAlignment(JTextField.CENTER);
+        obwod.setHorizontalAlignment(JTextField.CENTER);
+        pole.setHorizontalAlignment(JTextField.CENTER);
+
+        r.addActionListener(new java.awt.event.ActionListener(){
+            public void actionPerformed(java.awt.event.ActionEvent evt) { actionPerformed(evt); }
+        });
+
+        oblicz.addActionListener(this);
+
+        r.setText("0");
+        obwod.setText("0");
+        pole.setText("0");
+
+        add(r);
+        add(r1);
+        add(obwod1);
+        add(obwod);
+        add(pole1);
+        add(pole);
+        add(oblicz);
+        add(s);
+        add(pr);
+
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        try{
+            float pi= (float) 3.14;
+            float promien = Float.parseFloat(r.getText());
+
+            p = pi * (promien*promien);
+            o = 2 * pi * promien;
+
+            pole.setText(String.valueOf(p));
+            obwod.setText(String.valueOf(o));
+
+            if (pi<=0){
+                JOptionPane.showMessageDialog(null, "Wartości muszą być większe od 0");
+            }
+        }
+        catch (NumberFormatException s){
+            JOptionPane.showMessageDialog(null, "Niepoprawny format danych", "Błąd", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+
+
+    @Override
+    protected void paintComponent(Graphics e){
+        super.paintComponent(e);
+        Graphics2D g2d = (Graphics2D) e;
+
+        g2d.drawRoundRect(50,130,200,200,200,200);
+        g2d.drawLine(150,230,250,230);
+        g2d.setColor(Color.BLACK);
+        g2d.fillRoundRect(148,228,4,4,4,4);
+
+        g2d.drawLine(0, 380, 600, 380);
+    }
+}
