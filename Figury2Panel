@@ -1,0 +1,184 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class Figury2Panel<panel, a> extends JPanel implements ActionListener {
+    public static final int HEIGHT = 600;
+    public static final int WIDTH = 600;
+
+    private JTextField a;
+    private JTextField b;
+    private JLabel pole;
+    private JLabel obwod;
+    private JLabel a1;
+    private JLabel b1;
+    private JButton oblicz;
+    private JTextField pole1;
+    private JTextField obwod1;
+    private JTextField c;
+    private JTextField d;
+    private JLabel c1;
+    private JLabel d1;
+    private JLabel bok1;
+    private JLabel bok2;
+    private JLabel bok3;
+    private JLabel bok4;
+    private float p;
+    private float o;
+
+
+    public Figury2Panel(){
+        a = new JTextField (" ");
+        a1 = new JLabel("Podaj długość podstawy a: ");
+        b = new JTextField (" ");
+        b1 = new JLabel("Podaj wysokość h: ");
+        c = new JTextField(" ");
+        c1 = new JLabel("Podaj długość ramienia b: ");
+        d = new JTextField(" ");
+        d1 = new JLabel("Podaj długość ramienia c: ");
+        oblicz = new JButton("Oblicz");
+        pole = new JLabel("Pole figury wynosi: ");
+        pole1 = new JTextField(" ");
+        obwod = new JLabel("Obwód figury wynosi: ");
+        obwod1 = new JTextField(" ");
+        bok1 = new JLabel("a");
+        bok2 = new JLabel("b");
+        bok3 = new JLabel("c");
+        bok4 = new JLabel("h");
+
+
+        setLayout(null);
+
+        a1.setBounds(50, 20, 320, 50);
+        a.setBounds(380, 20, 100, 50);
+        b1.setBounds(50, 80, 320, 50);
+        b.setBounds(380, 80, 100, 50);
+        c1.setBounds(50, 140, 320, 50);
+        c.setBounds(380, 140, 100, 50);
+        d1.setBounds(50, 200, 320, 50);
+        d.setBounds(380, 200, 100, 50);
+        oblicz.setBounds(400,330, 100, 50);
+        pole.setBounds(50, 470, 320, 50);
+        pole1.setBounds(380, 470, 100, 50);
+        obwod.setBounds(50, 530, 320, 50);
+        obwod1.setBounds(380, 530, 100, 50);
+
+        bok1.setBounds(200, 422, 10, 10);
+        bok2.setBounds(135, 345, 10, 10);
+        bok3.setBounds(260, 345, 10, 10);
+        bok4.setBounds(205, 345, 10, 10);
+
+        a1.setFont(new java.awt.Font("Tahoma", 0, 18));
+        a.setFont(new java.awt.Font("Tahoma", 0, 18));
+        b1.setFont(new java.awt.Font("Tahoma", 0, 18));
+        b.setFont(new java.awt.Font("Tahoma", 0, 18));
+        c1.setFont(new java.awt.Font("Tahoma", 0, 18));
+        c.setFont(new java.awt.Font("Tahoma", 0, 18));
+        d1.setFont(new java.awt.Font("Tahoma", 0, 18));
+        d.setFont(new java.awt.Font("Tahoma", 0, 18));
+        oblicz.setFont(new java.awt.Font("Tahoma", 0, 18));
+        pole.setFont(new java.awt.Font("Tahoma", 0, 18));
+        pole1. setFont(new java.awt.Font("Tahoma", 0, 18));
+        obwod.setFont(new java.awt.Font("Tahoma", 0, 18));
+        obwod1.setFont(new java.awt.Font("Tahoma", 0, 18));
+        bok1.setFont(new java.awt.Font("Tahoma", 0, 12));
+        bok2.setFont(new java.awt.Font("Tahoma", 0, 12));
+        bok3.setFont(new java.awt.Font("Tahoma", 0, 12));
+        bok4.setFont(new java.awt.Font("Tahoma", 0, 12));
+
+        a.setHorizontalAlignment(JTextField.CENTER);
+        b.setHorizontalAlignment(JTextField.CENTER);
+        c.setHorizontalAlignment(JTextField.CENTER);
+        d.setHorizontalAlignment(JTextField.CENTER);
+        pole1.setHorizontalAlignment(JTextField.CENTER);
+        obwod1.setHorizontalAlignment(JTextField.CENTER);
+
+        a.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt) { actionPerformed(evt); }
+        });
+
+        b.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt) { actionPerformed(evt); }
+        });
+
+        c.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt) { actionPerformed(evt); }
+        });
+
+        d.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt) { actionPerformed(evt); }
+        });
+
+        oblicz.addActionListener(this);
+
+        a.setText("0");
+        b.setText("0");
+        c.setText("0");
+        d.setText("0");
+        pole1.setText("0");
+        obwod1.setText("0");
+
+        add(a);
+        add(b);
+        add(c);
+        add(d);
+        add(a1);
+        add(b1);
+        add(c1);
+        add(d1);
+        add(oblicz);
+        add(pole);
+        add(pole1);
+        add(obwod);
+        add(obwod1);
+        add(bok1);
+        add(bok2);
+        add(bok3);
+        add(bok4);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        try{
+            float bok_a = Float.parseFloat(a.getText());
+            float bok_b = Float.parseFloat(b.getText());
+            float bok_c = Float.parseFloat(c.getText());
+            float bok_d = Float.parseFloat(d.getText());
+
+            p = (bok_a*bok_b)/2;
+            o = bok_a+bok_c+bok_d;
+
+            pole1.setText(String.valueOf(p));
+            obwod1.setText(String.valueOf(o));
+
+            if (bok_a<=0 || bok_b<=0 || bok_c<=0 || bok_d<=0){
+                JOptionPane.showMessageDialog(null, "Wartości muszą być większe od 0");
+            }
+
+        }
+        catch (NumberFormatException s){
+            JOptionPane.showMessageDialog(null, "Niepoprawny format danych", "Błąd", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+
+    @Override
+    protected void paintComponent(Graphics e) {
+        super.paintComponent(e);
+        Graphics2D g2d = (Graphics2D) e;
+
+        g2d.drawLine(200, 270, 300, 420);
+        g2d.drawLine(200, 270, 100, 420);
+        g2d.drawLine(200, 270, 200, 420);
+        g2d.drawLine(100, 420, 300, 420);
+
+
+        g2d.drawLine(0, 450, 600, 450);
+
+    }
+}
