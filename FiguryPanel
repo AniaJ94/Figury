@@ -1,0 +1,140 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class FiguryPanel<panel, a> extends JPanel implements ActionListener {
+    public static final int HEIGHT = 600;
+    public static final int WIDTH = 600;
+
+    private JTextField a;
+    private JTextField b;
+    private JLabel pole;
+    private JLabel obwod;
+    private JLabel a1;
+    private JLabel b1;
+    private JButton oblicz;
+    private JTextField pole1;
+    private JTextField obwod1;
+    private JLabel bok1;
+    private JLabel bok2;
+    private float p;
+    private float o;
+
+
+    public FiguryPanel(){
+        a = new JTextField (" ");
+        a1 = new JLabel("Podaj długość boku a: ");
+        b = new JTextField (" ");
+        b1 = new JLabel("Podaj długość boku b: ");
+        oblicz = new JButton("Oblicz");
+        pole = new JLabel("Pole figury wynosi: ");
+        pole1 = new JTextField(" ");
+        obwod = new JLabel("Obwód figury wynosi: ");
+        obwod1 = new JTextField(" ");
+        bok1 = new JLabel("a");
+        bok2 = new JLabel("b");
+
+
+        setLayout(null);
+
+        a1.setBounds(100, 50, 200, 50);
+        a.setBounds(320, 50, 100, 50);
+        b1.setBounds(100, 120, 200, 50);
+        b.setBounds(320, 120, 100, 50);
+        oblicz.setBounds(320,220, 100, 50);
+        pole.setBounds(100, 420, 200, 50);
+        pole1.setBounds(320, 420, 100, 50);
+        obwod.setBounds(100, 490, 200, 50);
+        obwod1.setBounds(320, 490, 100, 50);
+        bok1.setBounds(90, 245, 10, 10);
+        bok2.setBounds(170, 188, 10, 10);
+
+        a1.setFont(new java.awt.Font("Tahoma", 0, 18));
+        a.setFont(new java.awt.Font("Tahoma", 0, 18));
+        b1.setFont(new java.awt.Font("Tahoma", 0, 18));
+        b.setFont(new java.awt.Font("Tahoma", 0, 18));
+        oblicz.setFont(new java.awt.Font("Tahoma", 0, 18));
+        pole.setFont(new java.awt.Font("Tahoma", 0, 18));
+        pole1. setFont(new java.awt.Font("Tahoma", 0, 18));
+        obwod.setFont(new java.awt.Font("Tahoma", 0, 18));
+        obwod1.setFont(new java.awt.Font("Tahoma", 0, 18));
+        bok1.setFont(new java.awt.Font("Tahoma", 0, 12));
+        bok2.setFont(new java.awt.Font("Tahoma", 0, 12));
+
+        a.setHorizontalAlignment(JTextField.CENTER);
+        b.setHorizontalAlignment(JTextField.CENTER);
+        pole1.setHorizontalAlignment(JTextField.CENTER);
+        obwod1.setHorizontalAlignment(JTextField.CENTER);
+
+        a.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt) { actionPerformed(evt); }
+        });
+
+        b.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt) { actionPerformed(evt); }
+        });
+
+        oblicz.addActionListener(this);
+
+        a.setText("0");
+        b.setText("0");
+        pole1.setText("0");
+        obwod1.setText("0");
+
+        add(a);
+        add(b);
+        add(a1);
+        add(b1);
+        add(oblicz);
+        add(pole);
+        add(pole1);
+        add(obwod);
+        add(obwod1);
+        add(bok1);
+        add(bok2);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+        try{
+            float bok_a = Float.parseFloat(a.getText());
+            float bok_b = Float.parseFloat(b.getText());
+
+            p = (bok_a*bok_b);
+            o = (2*bok_a)+(2*bok_b);
+
+            pole1.setText(String.valueOf(p));
+            obwod1.setText(String.valueOf(o));
+
+            if (bok_a<=0 || bok_b<=0){
+                JOptionPane.showMessageDialog(null, "Wartości muszą być większe od 0");
+            }
+        }
+        catch (NumberFormatException s){
+            JOptionPane.showMessageDialog(null, "Niepoprawny format danych", "Błąd", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+
+    @Override
+    protected void paintComponent(Graphics e) {
+        super.paintComponent(e);
+        Graphics2D g2d = (Graphics2D) e;
+
+        g2d.drawLine(100, 200, 250, 200);
+        g2d.drawLine(100, 300, 250, 300);
+        g2d.drawLine(100, 200, 100, 300);
+        g2d.drawLine(250, 200, 250, 300);
+
+
+        g2d.drawLine(0, 360, 600, 360);
+
+    }
+}
